@@ -16,7 +16,6 @@ app.use(express.urlencoded({ extended: true }));
 const session = require('express-session');
 const passport = require('passport');
 const MongoStorage = require('connect-mongo');
-const flash = require('connect-flash');
 require('./config/passport');
 
 app.use(session({
@@ -28,7 +27,6 @@ app.use(session({
 
 app.use(passport.initialize());
 app.use(passport.session());
-app.use(flash());
 
 app.use('/', itemRoutes);
 app.use('/auth', authRoutes);
