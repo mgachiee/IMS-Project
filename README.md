@@ -32,6 +32,7 @@ A simple project for completing the Bayan Academy BE101 Bootcamp.
 
 ### Further Enhancements
 
+- Error handling of Auth
 - Image support
 - Filtering and Sorting
 - Sidebar button functionalities
