@@ -23,7 +23,7 @@ exports.items = async (req, res) => {
   try {
     const objectItems = items.map(item => ({
       ...item.toObject(),
-      price: (item.price * 55.99) >= 1000 ? ((item.price * 55.99) / 1000).toFixed(2).toString() + 'K' : item.price
+      price: item.price >= 1000 ? (item.price / 1000).toFixed(2).toString() + 'K' : item.price
     }))
     res.render('index', { items: objectItems, success, message: message });
   } catch (err) {
