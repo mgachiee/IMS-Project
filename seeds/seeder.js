@@ -1,7 +1,6 @@
 // Importing required modules
 const mongoose = require('mongoose');
 const Item = require('../models/item');
-const User = require('../models/user');
 const inventoryDatabase = 'inventory-db';
 
 // Connect to the database
@@ -160,27 +159,9 @@ const seedDb = async() => {
     }
   ];
 
-  const user = [
-    {
-      "username": "admin",
-      "firstname": "Admin",
-      "lastname": "User",
-      "email": "admin@email.com",
-      "password": "admin123"
-    },
-    {
-      "username": "user",
-      "firstname": "Regular",
-      "lastname": "User",
-      "email": "user@email.com",
-      "password": "user123"
-    }
-  ]
-
   // Insert the data into the database
   try {
     await Item.insertMany(items);
-    await User.insertMany(user);
   } catch (err) {
     console.log('An error occured seeding the database.');
     console.log(err);
