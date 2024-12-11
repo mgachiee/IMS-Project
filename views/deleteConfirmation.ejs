@@ -7,33 +7,39 @@
   <title>IMS | Delete Item: <%= item.name %></title>
 </head>
 <body>
-  <div class="container mt-5">
-    <h1>Inventory Management System</h1>
-    <h2 class="fw-500 text-danger">Delete Confirmation</h2>
-    <div class="form-group mb-3">
-      <label for="name">Item name:</label>
-      <input type="text" name="name" id="name" class="form-control" disabled value="<%= item.name %>">
+  <div class="d-flex justify-content-center">
+    <%- include('partials/navbar') %>
+    <div class="container shadow-lg p-3 m-5 bg-body-tertiary rounded">
+      <h2 class="fw-500 text-danger mt-3">Delete Confirmation</h2>
+      <div class="form-group mb-3">
+        <label for="id">Item ID:</label>
+        <input type="text" name="id" id="id" class="form-control" disabled value="<%= item._id %>">
+      </div>
+      <div class="form-group mb-3">
+        <label for="name">Item name:</label>
+        <input type="text" name="name" id="name" class="form-control" disabled value="<%= item.name %>">
+      </div>
+      <div class="form-group mb-3">
+        <label for="category">Category:</label>
+        <input type="text" name="category" id="category" class="form-control" disabled value="<%= item.category %>">
+      </div>
+      <div class="form-group mb-3">
+        <label for="quantity">Quantity:</label>
+        <input type="number" name="quantity" id="quantity" class="form-control" disabled value="<%= item.quantity %>">
+      </div>
+      <div class="form-group mb-3">
+        <label for="price">Price</label>
+        <input type="number" name="price" id="price" class="form-control" disabled value="<%= item.price %>">
+      </div>
+      <div class="form-group mb-3">
+        <label for="description">Description</label>
+        <textarea name="description" id="description" class="form-control" disabled><%= item.description %></textarea>
+      </div>
+      <form action="/items/<%= item._id %>/?_method=DELETE" method="post" class="d-inline">
+        <button class="btn btn-danger text-white mb-4">Delete</button>
+      </form>
+      <a href="/items" class="btn btn-secondary mb-4">Back</a>
     </div>
-    <div class="form-group mb-3">
-      <label for="category">Category:</label>
-      <input type="text" name="category" id="category" class="form-control" disabled value="<%= item.category %>">
-    </div>
-    <div class="form-group mb-3">
-      <label for="quantity">Quantity:</label>
-      <input type="number" name="quantity" id="quantity" class="form-control" disabled value="<%= item.quantity %>">
-    </div>
-    <div class="form-group mb-3">
-      <label for="price">Price</label>
-      <input type="number" name="price" id="price" class="form-control" disabled value="<%= item.price %>">
-    </div>
-    <div class="form-group mb-3">
-      <label for="description">Description</label>
-      <textarea name="description" id="description" class="form-control" disabled><%= item.description %></textarea>
-    </div>
-    <form action="/items/<%= item._id %>/?_method=DELETE" method="post" class="d-inline">
-      <button class="btn btn-danger text-white mb-4">Delete</button>
-    </form>
-    <a href="/items" class="btn btn-secondary mb-4">Back</a>
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>

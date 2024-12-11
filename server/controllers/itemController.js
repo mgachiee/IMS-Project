@@ -23,7 +23,7 @@ exports.items = async (req, res) => {
   try {
     const objectItems = items.map(item => ({
       ...item.toObject(),
-      price: item.price >= 1000 ? (item.price / 1000).toString() + 'K' : item.price
+      price: (item.price * 55.99) >= 1000 ? ((item.price * 55.99) / 1000).toFixed(2).toString() + 'K' : item.price
     }))
     res.render('index', { items: objectItems, success, message: message });
   } catch (err) {
@@ -36,7 +36,6 @@ exports.items = async (req, res) => {
 exports.view = async (req, res) => {
   const { id } = req.params
   const item = await Item.findOne({_id: id});
-  console.log(item);
   res.render('viewItem', {item});
 }
 
@@ -49,7 +48,7 @@ exports.addItemForm = (req, res) => {
 exports.addItem = async (req, res) => {
   const newItem = new Item(req.body);
   await newItem.save();
-  message = 'Item Added Successfully';
+  message = 'Item created successfully';
   res.redirect('/items?success=true');
 }
 
@@ -64,7 +63,7 @@ exports.editItem = async (req, res) => {
 exports.udpateItem = async (req, res) => {
   const { id } = req.params;
   await Item.findByIdAndUpdate(id, {...req.body});
-  message = 'Item Updated Successfully';
+  message = 'Item updated successfully';
   res.redirect('/items?success=true');
 }
 
@@ -79,6 +78,6 @@ exports.deleteConfirmation = async (req, res) => {
 exports.deleteItem = async (req, res) => {
   const { id } = req.params;
   await Item.findByIdAndDelete(id);
-  message = 'Item Deleted Successfully';
+  message = 'Item deleted successfully';
   res.redirect('/items?success=true');
 }
