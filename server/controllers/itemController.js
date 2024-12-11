@@ -1,6 +1,7 @@
 // Import Packages
 const mongoose = require('mongoose');
 const Item = require('../../models/item');
+const User = require('../../models/user');
 const inventoryDatabase = 'inventory-db';
 
 // Prepare database connection
@@ -19,13 +20,16 @@ let message = ''
 // Display all items
 exports.items = async (req, res) => {
   const items = await Item.find({});
-  const success = req.query.success == 'true';
+  const user = await User.findOne({username: req.user.username});
+  const success = req.query.success === 'true' ? true : false;
+  const login = req.query.login === 'true' ? true : false;
+  message = login ? 'Welcome to the Inventory App!' : message;
   try {
     const objectItems = items.map(item => ({
       ...item.toObject(),
       price: item.price >= 1000 ? (item.price / 1000).toFixed(2).toString() + 'K' : item.price
     }))
-    res.render('index', { items: objectItems, success, message: message });
+    res.render('index', { items: objectItems, success, message: message, user });
   } catch (err) {
     console.log('Error fetching the items:', err);
     res.status(500).send('Internal Server Error');
