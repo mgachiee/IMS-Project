@@ -12,6 +12,9 @@
   <div class="card shadow-lg" style="width: 100%; max-width: 400px;">
     <div class="card-body">
       <h5 class="card-title text-center mb-4 fw-500">Login</h5>
+      <% if (message) { %>
+        <hp class="text-danger"><%= message %></p>
+      <% } %>
       <form action="/auth/login" method="POST">
         <div class="mb-3">
           <label for="username" class="form-label">Username</label>

@@ -40,12 +40,14 @@ exports.items = async (req, res) => {
 exports.view = async (req, res) => {
   const { id } = req.params
   const item = await Item.findOne({_id: id});
-  res.render('viewItem', {item});
+  const user = await User.findOne({username: req.user.username});
+  res.render('viewItem', {item, user});
 }
 
 // Add Item Form
-exports.addItemForm = (req, res) => {
-  res.render('addItem');
+exports.addItemForm = async (req, res) => {
+  const user = await User.findOne({username: req.user.username});
+  res.render('addItem', {user});
 }
 
 // Saving of New Item to the Database
@@ -60,7 +62,8 @@ exports.addItem = async (req, res) => {
 exports.editItem = async (req, res) => {
   const { id } = req.params;
   const item = await Item.findById(id);
-  res.render('editItem', {item});
+  const user = await User.findOne({username: req.user.username});
+  res.render('editItem', {item, user});
 }
 
 // Update the changes of item
@@ -75,7 +78,8 @@ exports.udpateItem = async (req, res) => {
 exports.deleteConfirmation = async (req, res) => {
   const { id } = req.params;
   const item = await Item.findById(id);
-  res.render('deleteConfirmation', {item});
+  const user = await User.findOne({username: req.user.username});
+  res.render('deleteConfirmation', {item, user});
 }
 
 // Delete an Item

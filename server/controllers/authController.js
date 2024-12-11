@@ -8,7 +8,14 @@ module.exports.isAuthenticated = (req, res, next) => {
 };
 
 exports.login = (req, res) => {
-  res.render('login');
+  const { success, login } = req.query;
+
+  let message = '';
+  if (success === 'false' && login === 'true') {
+    message = 'Invalid username or password.';
+  }
+
+  res.render('login', { message });
 }
 
 exports.signupForm = (req, res) => {

@@ -14,8 +14,8 @@ router.post('/signup', authController.signup);
 // Login Route
 router.post('/login', passport.authenticate('local', {
   successRedirect: '/items?success=true&login=true',
-  failureRedirect: '/login',
-  failureFlash: true,
+  failureRedirect: '/auth/login?success=false&login=true',
+  failureFlash: false,
 }));
 
 // Logout Route
