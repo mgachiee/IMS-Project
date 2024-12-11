@@ -23,9 +23,7 @@ A simple project for completing the Bayan Academy BE101 Bootcamp.
 
    - Open chrome and head to ```localhost:3000/items```
    - If not logged in, it will redirect you to ```localhost/auth/login```
-   - Create an account or use the following credentials:
-   - __username:__ ```admin```, __password:__ ```admin123```
-   - __username:__ ```user```, __password:__ ```user123```
+   - Create an account.
 
 ### Features Working
 
